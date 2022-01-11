@@ -10,7 +10,7 @@ import java.io.PrintStream;
 public class Controller {
 
     private String path = System.getProperty("user.home") + System.getProperty("file.separator") + "output.txt";
-    private final File curfile = new File(path);
+    private File curfile = new File(path);
     /*
      * This class must implement a simple controller responsible of I/O access. It
      * considers a single file at a time, and it is able to serialize objects in it.
@@ -35,10 +35,10 @@ public class Controller {
      */
     /**
      * Sets file to specified directory.
-     * @param newPath
+     * @param newFile
      */
-    public void setFile(final String newPath) {
-        path = newPath + System.getProperty("file.separator") + "output.txt";;
+    public void setFile(final File newFile) {
+        curfile = newFile;
     }
     /**
      * Gets current file.
@@ -52,7 +52,7 @@ public class Controller {
      * @return file path as string
      */
     public String getPath() {
-        return curfile.getPath();
+        return curfile.getAbsolutePath();
     }
     /**
      * Saves string into current file.
