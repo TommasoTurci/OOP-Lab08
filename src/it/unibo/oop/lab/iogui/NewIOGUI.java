@@ -20,7 +20,7 @@ import java.util.Scanner;
 import javax.swing.JTextField;
 
 /**
- * Java COCK.
+ * 
  */
 public class NewIOGUI {
     /**
@@ -54,7 +54,7 @@ public class NewIOGUI {
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                final File filetto=new File(PATH);
+                final File filetto = new File(PATH);
                 try (Scanner sc = new Scanner(filetto);) {
                     System.out.println(sc.nextLine());
                 } catch (FileNotFoundException e1) {
@@ -64,6 +64,9 @@ public class NewIOGUI {
             }
         });
     }
+    /**
+     * 
+     */
     void display() {
         frame.pack();
         frame.setVisible(true);
