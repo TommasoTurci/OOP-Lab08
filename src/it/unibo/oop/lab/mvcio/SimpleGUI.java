@@ -1,9 +1,18 @@
 package it.unibo.oop.lab.mvcio;
 
 import java.awt.Dimension;
+import java.awt.BorderLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  * A very simple program using a graphical interface.
@@ -12,6 +21,7 @@ import javax.swing.JFrame;
 public final class SimpleGUI {
 
     private final JFrame frame = new JFrame();
+    private final Controller control = new Controller();
 
     /*
      * Once the Controller is done, implement this class in such a way that:
@@ -37,6 +47,19 @@ public final class SimpleGUI {
      * builds a new {@link SimpleGUI}.
      */
     public SimpleGUI() {
+        final JPanel canvas = new JPanel();
+        final JTextArea textarea = new JTextArea();
+        final JButton btnSave =  new JButton("Save");
+        canvas.setLayout(new BorderLayout());
+        canvas.add(textarea);
+        canvas.add(btnSave, BorderLayout.SOUTH);
+        frame.setContentPane(canvas);
+        textarea.setLineWrap(true);
+        btnSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                control.editFile(textarea.getText());
+            } });
         /*
          * Make the frame half the resolution of the screen. This very method is
          * enough for a single screen setup. In case of multiple monitors, the
@@ -57,6 +80,14 @@ public final class SimpleGUI {
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
+        frame.setVisible(true);
+    }
+    /**
+     * Function main.
+     * @param args
+     */
+    public static void main(final String... args) {
+        new SimpleGUI();
     }
 
 }
